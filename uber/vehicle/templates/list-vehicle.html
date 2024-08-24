@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{% url 'criar-veiculo' %}" class="btn btn-outline-primary" style="font-weight: 900;">Criar novo Veículo</a>
+
+<table class="table table-dark mt-3">
+    <thead>
+        <tr>
+            <td>Marca</td>
+            <td>Placa</td>
+            <td>Cor</td>
+            <td>Modelo</td>
+            <td>Passageiros</td>
+
+            <td>Editar</td>
+            <td>Deletar</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for vehicle in vehicles %}
+        <tr>
+            <td>{{vehicle.marca}}</td>
+            <td>{{vehicle.placa}}</td>
+            <td>{{vehicle.cor}}</td>
+            <td>{{vehicle.modelo}}</td>
+            <td>{{vehicle.qtdPassageiros|default_if_none:'Sem passageiros'}}</td>
+
+            <td><a href="{% url 'atualizar-veiculo' vehicle.id %}" class="btn btn-outline-primary btn-sm">Editar</a></td>
+            <td><a href="{% url 'deletar-veiculo' vehicle.id %}" class="btn btn-outline-danger btn-sm">Deletar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

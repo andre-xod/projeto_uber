@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>
+    Cadastrar Veículo
+</h3>
+
+<form method="post">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+{% endblock %}

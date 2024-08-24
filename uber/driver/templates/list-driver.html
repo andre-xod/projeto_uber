@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>
+    <a href="{% url 'criar-motorista' %}" style="font-weight: 900;" class="btn btn-outline-primary">
+        Cadastrar novo Motorista
+    </a>
+</p>
+
+<table class="table table-dark text-start">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cpf</th>
+            <th>Telefone</th>
+            <th>Habilitacao</th>
+            <th>Veiculo</th>
+            
+            <th>Editar</th>
+            <th>Deletar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for driver in drivers %}
+        <tr>
+            <td>{{driver.nome}}</td>
+            <td>{{driver.cpf}}</td>
+            <td>{{driver.telefone}}</td>
+            <td>{{driver.habilitacao}}</td>
+            <td>{{driver.veiculo|default_if_none:'Sem veiculo'}}</td>
+
+            <td><a href="{% url 'atualizar-motorista' driver.id %}" class="btn btn-outline-primary btn-sm">Editar</a></td>
+            <td><a href="{% url 'deletar-motorista' driver.id %}" class="btn btn-outline-danger btn-sm">Deletar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{%endblock%}
